@@ -1,0 +1,50 @@
+<!-- {{(currentStudentData | async )?.name}} -->
+<div class="container center">
+    <form [formGroup]="updateForm" (ngSubmit)="updateMentor()">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h1 class="h3 mb-3 font-weight-normal text-center">New Student Registration Form</h1>
+                            
+                            <span style="color: red"
+                                *ngIf="!updateForm.get('name').valid && updateForm.get('name').dirty">*</span>
+                            <input
+                                [ngClass]="{'error': !updateForm.get('name').valid && updateForm.get('name').dirty, 'correct': updateForm.get('name').valid}"
+                                formControlName="name" type="text" class="form-control" placeholder="Complete Name">    
+                        </div>
+                        <div class="form-group">
+                            
+                            <span style="color: red"
+                                *ngIf="!updateForm.get('college').valid && updateForm.get('college').dirty">*</span>
+                            <input
+                                [ngClass]="{'error': !updateForm.get('college').valid && updateForm.get('college').dirty, 'correct': updateForm.get('college').valid}"
+                                formControlName="college" type="text" class="form-control" placeholder="College Name">    
+                        </div>
+                        <div class="form-group">
+                            
+                            <span style="color: red"
+                                *ngIf="!updateForm.get('email').valid && updateForm.get('email').dirty">*</span>
+                            <input
+                                [ngClass]="{'error': !updateForm.get('email').valid && updateForm.get('email').dirty, 'correct': updateForm.get('email').valid}"
+                                formControlName="email" type="email" class="form-control" placeholder="Email address">    
+                        </div>
+                        <div class="form-group">
+                            <select formControlName = "mentor" class ="form-control">
+                                <option>-----select Mentor to update -------</option>
+                                <option *ngFor = "let mentor of mentorList | async">{{mentor.name}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                      <input type="submit" class="btn btn-primary" [disabled]="updateForm.invalid">
+                    </div>
+                  </div>
+        
+    </form>
+    
+</div>
+
+
